@@ -1,6 +1,7 @@
 package com.shubhamranswal.codescanner
 
 import android.Manifest
+import android.net.ConnectivityManager.TYPE_WIFI
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val scannerView = findViewById<CodeScannerView>(R.id.scanner_view)
+        val tvResults = findViewById<TextView>(R.id.tvResults)
 
         codeScanner = CodeScanner(this, scannerView)
 
@@ -40,7 +42,8 @@ class MainActivity : AppCompatActivity() {
         // Callbacks
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
-                Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+//                Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+                tvResults.text = "Results: ${it}"
             }
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
