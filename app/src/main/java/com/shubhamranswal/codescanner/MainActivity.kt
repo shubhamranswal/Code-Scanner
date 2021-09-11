@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         // Callbacks
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
-                tvResults.text = "${it}"
+                tvResults.text = "Scan Results \n ${it}"
             }
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
